@@ -9,6 +9,7 @@ export class Decodo implements INodeType {
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
     description: 'asdf',
+    icon: 'file:decodo.svg',
     defaults: {
       name: 'Decodo',
     },
