@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   IExecuteFunctions,
   INodeExecutionData,
@@ -6,15 +5,14 @@ import {
   INodeTypeDescription,
   NodeConnectionType,
 } from 'n8n-workflow';
+import { ScraperApiService } from './services/scraper-api-service';
 
 export class Decodo implements INodeType {
   description: INodeTypeDescription = {
-    properties: [],
     displayName: 'Decodo',
     name: 'decodo',
     group: ['transform'],
     version: 1,
-    subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
     description: 'asdf',
     icon: 'file:decodo.svg',
     defaults: {
@@ -29,17 +27,20 @@ export class Decodo implements INodeType {
         required: true,
       },
     ],
-    requestDefaults: {
-      baseURL: 'https://scraper-api.decodo.com/v2/scrape',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    properties: [
+      {
+        displayName: 'URL',
+        name: 'url',
+        type: 'string',
+        default: "={{ $fromAI('url') }}",
+        required: true,
+        description: 'Target URL to scrape',
       },
-    },
+    ],
   };
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-    console.log('asdf');
+    const returnData: INodeExecutionData[] = [];
 
     // this whole thing is gonna be used as an ai tool
     // so i need to get the target and params from previous propts/steps
@@ -47,14 +48,16 @@ export class Decodo implements INodeType {
     const { username, password } = await this.getCredentials('decodoApi');
     const userPass64 = Buffer.from(`${username}:${password}`).toString('base64');
 
-    const res = await axios.request({
-      url: 'https://scraper-api.decodo.com/v2/scrape',
-      headers: {
-        authorization: `Basic ${userPass64}`,
+    const url = this.getNodeParameter('url', 0) as string;
+
+    const resBody = await ScraperApiService.scrape({ n8n: this, userPass64, params: { url } });
+
+    returnData.push({
+      json: {
+        data: resBody,
       },
-      data: {},
     });
 
-    return res.data;
+    return [this.helpers.returnJsonArray(returnData)];
   }
 }

@@ -3,8 +3,7 @@ import { ICredentialType, INodeProperties } from 'n8n-workflow';
 export class DecodoApi implements ICredentialType {
   name = 'decodoApi';
   displayName = 'Decodo Credentials API';
-  documentationUrl =
-    'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';
+  documentationUrl = 'https://help.decodo.com';
   properties: INodeProperties[] = [
     {
       displayName: 'Web Advanced username',
