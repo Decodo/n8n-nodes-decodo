@@ -6,12 +6,12 @@
   "resources": {
     "credentialDocumentation": [
       {
-        "url": ""
+        "url": "https://help.decodo.com/docs/web-scraping-api-introduction"
       }
     ],
     "primaryDocumentation": [
       {
-        "url": ""
+        "url": "https://help.decodo.com/docs/web-scraping-api-introduction"
       }
     ]
   }
