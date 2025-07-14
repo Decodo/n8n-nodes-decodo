@@ -1,48 +1,57 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-decodo
 
-# n8n-nodes-starter
+This repo contains the source code for integrating [Decodo's Scraper API](https://decodo.com/scraping) with [n8n](https://n8n.io).
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+## Installation
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-## Prerequisites
+## Operations
 
-You need the following installed on your development machine:
+The node supports the following functionality:
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+- Scrape the contents of a target URL (inferred from the AI agent).
+- `todo`: Scrape Google Search and Amazon Search data.
+- `todo`: allow picking a geolocation to circumvent geo-blocks.
 
-## Using this starter
+## Credentials
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+The node required a Decodo Scraper API Web Advanced subscription. Free trials available in [dashboard](https://dashboard.decodo.com/).
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+Once you have a unsername and password:
 
-## More information
+1. Open the credentials window on n8:
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+<img src="docs/creds_01.png">
 
-## License
+2. Create a new credential:
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+<img src="docs/creds_02.png" width="200px">
+
+3. Find the Decodo Scraper API:
+
+<img src="docs/creds_03.png">
+
+4. Fill in your username and password
+
+<img src="docs/creds_04.png">
+
+After filling in your credentials, you can test your node in one of the ways below:
+
+- Using the node as a tool, filling in a sample URL and running "Execute step".
+- Wiring up an AI agent and sending a propm with a target website, such as "scrape nba's wikipedia page".
+
+## Compatibility
+
+Node has been developed and tested with:
+
+- Node.js v22.17.0
+- n8n nodes API version 1
+- [n8n-workflow](https://www.npmjs.com/package/n8n-workflow) v1.82.0
+
+## Resources
+
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [Decodo Scraper API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
