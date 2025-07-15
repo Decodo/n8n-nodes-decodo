@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-decodo",
+  "name": "@decodo/n8n-nodes",
   "version": "0.1.0",
   "description": "Decodo n8n integration",
   "keywords": [
