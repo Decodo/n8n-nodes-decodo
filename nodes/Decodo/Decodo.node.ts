@@ -6,37 +6,33 @@ import {
   NodeConnectionType,
 } from 'n8n-workflow';
 import { ScraperApiService } from './services/scraper-api-service';
+import { urlProperty } from './properties';
 
 export class Decodo implements INodeType {
+  static NAME = 'Decodo';
+
+  static CREDS = 'decodoApi';
+
   description: INodeTypeDescription = {
-    displayName: 'Decodo',
+    displayName: Decodo.NAME,
     name: 'decodo',
     group: ['transform'],
     version: 1,
-    description: 'asdf',
+    description: "Decodo's Scraper API",
     icon: 'file:decodo.svg',
     defaults: {
-      name: 'Decodo',
+      name: Decodo.NAME,
     },
     inputs: [NodeConnectionType.Main],
     outputs: [NodeConnectionType.Main],
     usableAsTool: true,
     credentials: [
       {
-        name: 'decodoApi',
+        name: Decodo.CREDS,
         required: true,
       },
     ],
-    properties: [
-      {
-        displayName: 'URL',
-        name: 'url',
-        type: 'string',
-        default: "={{ $fromAI('url') }}",
-        required: true,
-        description: 'Target URL to scrape',
-      },
-    ],
+    properties: [urlProperty],
   };
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
@@ -50,7 +46,12 @@ export class Decodo implements INodeType {
 
     const url = this.getNodeParameter('url', 0) as string;
 
-    const resBody = await ScraperApiService.scrape({ n8n: this, userPass64, params: { url } });
+    const resBody = await ScraperApiService.scrape({
+      n8n: this,
+      creds: Decodo.CREDS,
+      userPass64,
+      params: { url },
+    });
 
     returnData.push({
       json: {
