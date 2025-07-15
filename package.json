@@ -33,15 +33,9 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js",
-      "dist/credentials/NasaPicsApi.credentials.js",
       "dist/credentials/DecodoApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js",
-      "dist/nodes/NasaPics/NasaPics.node.js",
       "dist/nodes/Decodo/Decodo.node.js"
     ]
   },
