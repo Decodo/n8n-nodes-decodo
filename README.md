@@ -37,7 +37,7 @@ Once you have a scraping account username and password:
 After filling in your credentials, you can test your node in one of the ways below:
 
 - Using the node as a tool, filling in a sample URL and running "Execute step".
-- Wiring up an AI agent and sending a propm with a target website, such as `scrape nba's wikipedia page`.
+- Wiring up an AI agent and sending a propmt with a target website, such as `scrape nba's wikipedia page`.
 
 ## Compatibility
 

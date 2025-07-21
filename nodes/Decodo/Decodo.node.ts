@@ -38,9 +38,6 @@ export class Decodo implements INodeType {
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const returnData: INodeExecutionData[] = [];
 
-    // this whole thing is gonna be used as an ai tool
-    // so i need to get the target and params from previous propts/steps
-
     const { username, password } = await this.getCredentials('decodoApi');
     const userPass64 = Buffer.from(`${username}:${password}`).toString('base64');
 
