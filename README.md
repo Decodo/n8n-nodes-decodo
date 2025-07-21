@@ -10,17 +10,13 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-The node supports the following functionality:
-
-- Scrape the contents of a target URL (inferred from the AI agent).
-- `todo`: Scrape Google Search and Amazon Search data.
-- `todo`: allow picking a geolocation to circumvent geo-blocks.
+The node supports scraping the contents of a target URL using Decodo's Scraper API, which automcatically circumvents blocks and bot protection.
 
 ## Credentials
 
 The node required a Decodo Scraper API Web Advanced subscription. Free trials available in [dashboard](https://dashboard.decodo.com/).
 
-Once you have a unsername and password:
+Once you have a scraping account username and password:
 
 1. Open the credentials window on n8:
 
@@ -41,7 +37,7 @@ Once you have a unsername and password:
 After filling in your credentials, you can test your node in one of the ways below:
 
 - Using the node as a tool, filling in a sample URL and running "Execute step".
-- Wiring up an AI agent and sending a propm with a target website, such as "scrape nba's wikipedia page".
+- Wiring up an AI agent and sending a propm with a target website, such as `scrape nba's wikipedia page`.
 
 ## Compatibility
 
