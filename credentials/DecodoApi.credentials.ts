@@ -3,17 +3,11 @@ import { ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-wo
 export class DecodoApi implements ICredentialType {
   name = 'decodoApi';
   displayName = 'Decodo Credentials API';
-  documentationUrl = 'https://help.decodo.com';
+  documentationUrl = 'https://help.decodo.com/docs/web-scraping-api-introduction';
   properties: INodeProperties[] = [
     {
-      displayName: 'Web Advanced username',
-      name: 'username',
-      type: 'string',
-      default: '',
-    },
-    {
-      displayName: 'Web Advanced password',
-      name: 'password',
+      displayName: 'Web Advanced basic auth token',
+      name: 'token',
       type: 'string',
       default: '',
       typeOptions: {
@@ -23,7 +17,12 @@ export class DecodoApi implements ICredentialType {
   ];
   test: ICredentialTestRequest = {
     request: {
-      baseURL: 'https://scraper-api.smartproxy.com/v1/stats',
+      baseURL: 'https://scraper-api.decodo.com',
+      url: '/v1/stats',
+      method: 'GET',
+      headers: {
+        authorization: '={{"Basic " + $credentials.token}}',
+      },
     },
   };
 }

@@ -38,15 +38,14 @@ export class Decodo implements INodeType {
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const returnData: INodeExecutionData[] = [];
 
-    const { username, password } = await this.getCredentials('decodoApi');
-    const userPass64 = Buffer.from(`${username}:${password}`).toString('base64');
+    const { token } = await this.getCredentials('decodoApi');
 
     const url = this.getNodeParameter('url', 0) as string;
 
     const resBody = await ScraperApiService.scrape({
       n8n: this,
       creds: Decodo.CREDS,
-      userPass64,
+      token,
       params: { url },
     });
 
