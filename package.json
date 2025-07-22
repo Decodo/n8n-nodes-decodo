@@ -1,6 +1,6 @@
 {
   "name": "@decodo/n8n-nodes-decodo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Decodo n8n integration",
   "keywords": [
     "n8n-community-node-package"

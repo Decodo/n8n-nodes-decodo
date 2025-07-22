@@ -1,4 +1,4 @@
-import { ICredentialType, INodeProperties } from 'n8n-workflow';
+import { ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class DecodoApi implements ICredentialType {
   name = 'decodoApi';
@@ -21,4 +21,9 @@ export class DecodoApi implements ICredentialType {
       },
     },
   ];
+  test: ICredentialTestRequest = {
+    request: {
+      baseURL: 'https://scraper-api.smartproxy.com/v1/stats',
+    },
+  };
 }
