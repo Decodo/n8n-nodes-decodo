@@ -62,6 +62,34 @@ The question can be answered by updating the prompt with an instruction to scrap
 scrape wikipedia and tell me who won nba in 2025
 ```
 
+## Development & Releases
+
+### Automated Releases
+
+This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `master` branch, the following happens automatically:
+
+1. **Semantic Analysis**: Commit messages are analyzed to determine the type of release (patch, minor, major)
+2. **Version Bump**: The version in `package.json` is automatically updated
+3. **NPM Publish**: The package is built and published to npm as `@decodo/n8n-nodes-decodo`
+4. **GitHub Release**: A GitHub release is created with automatically generated release notes
+5. **Git Tag**: A git tag is created for the new version
+
+### Required Secrets
+
+For automated releases to work, the following GitHub repository secrets must be configured:
+
+- `NPM_TOKEN`: An npm access token with publish permissions for the `@decodo` organization
+- `GITHUB_TOKEN`: Automatically provided by GitHub Actions (no setup required)
+
+### Commit Message Format
+
+To trigger releases, use conventional commit messages:
+
+- `feat: new feature` → Minor version bump
+- `fix: bug fix` → Patch version bump
+- `feat!: breaking change` or `BREAKING CHANGE:` in footer → Major version bump
+- `docs:`, `style:`, `refactor:`, `test:`, `chore:` → No release
+
 ## Compatibility
 
 Node has been developed and tested with:
