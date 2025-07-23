@@ -21,6 +21,7 @@ export class ScraperApiService {
         authorization: `Basic ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'x-integration': 'n8n',
       },
       body: params,
     });
