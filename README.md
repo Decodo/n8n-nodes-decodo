@@ -62,6 +62,15 @@ The question can be answered by updating the prompt with an instruction to scrap
 scrape wikipedia and tell me who won nba in 2025
 ```
 
+### Parameters
+
+The following parameters are inferred automatically from messages:
+
+| Parameter | Description                           | Example message                                                                         |
+| --------- | ------------------------------------- | --------------------------------------------------------------------------------------- |
+| `url`     | The target URL to scrape              | Scrape wikipedia and tell me the article of the day.                                    |
+| `geo`     | The country name from which to scrape | Scrape https://ip.decodo.com/json and tell me what city did the request originate from. |
+
 ## Development & Releases
 
 ### Automated Releases
