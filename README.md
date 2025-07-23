@@ -66,7 +66,7 @@ scrape wikipedia and tell me who won nba in 2025
 
 ### Automated Releases
 
-This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `master` branch, the following happens automatically:
+This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `main` branch, the following happens automatically:
 
 1. **Semantic Analysis**: Commit messages are analyzed to determine the type of release (patch, minor, major)
 2. **Version Bump**: The version in `package.json` is automatically updated
