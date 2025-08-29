@@ -73,6 +73,15 @@ The following parameters are inferred automatically from messages:
 
 ## Development & Releases
 
+To contribute to this node:
+
+- Install n8n globally in your development machine.
+- Pull and build this repo.
+- Inside the project folder, run `npm link` after building to make your local build of `@decodo/n8n-nodes-decodo` available in the local npm registry.
+- Inside `~/.n8n/nodes/node_modules/`, run `npm link @decodo/n8n-nodes-decodo`.
+
+See this doc for more info: https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally
+
 ### Automated Releases
 
 This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `main` branch, the following happens automatically:

@@ -14,11 +14,6 @@ export class ScraperApiService {
     token: CredentialInformation;
     params: object;
   }) {
-    const body = {
-      ...params,
-      markdown: true,
-    };
-
     const resBody = await n8n.helpers.httpRequestWithAuthentication.call(n8n, creds, {
       url: this.SERVICE_URL_PROD,
       method: 'POST',
@@ -28,7 +23,7 @@ export class ScraperApiService {
         'Content-Type': 'application/json',
         'x-integration': 'n8n',
       },
-      body,
+      body: params,
     });
 
     return resBody;
