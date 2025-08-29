@@ -8,6 +8,8 @@ import {
 import { ScraperApiService } from './services/scraper-api-service';
 import { UrlProperty } from './properties';
 import { GeoProperty } from './properties/geo/geo.property';
+import { MarkdownProperty } from './properties/markdown.property';
+import { ParameterTransformer } from './services/parameter-transformer';
 
 export class Decodo implements INodeType {
   static NAME = 'Decodo';
@@ -33,7 +35,7 @@ export class Decodo implements INodeType {
         required: true,
       },
     ],
-    properties: [UrlProperty.property, GeoProperty.property],
+    properties: [UrlProperty.property, GeoProperty.property, MarkdownProperty.property],
   };
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
@@ -43,12 +45,15 @@ export class Decodo implements INodeType {
 
     const url = this.getNodeParameter('url', 0) as string;
     const geo = this.getNodeParameter('geo', 0) as string;
+    const markdown = this.getNodeParameter('markdown', 0) as boolean;
+
+    const params = ParameterTransformer.transform({ url, geo, markdown });
 
     const resBody = await ScraperApiService.scrape({
       n8n: this,
       creds: Decodo.CREDS,
       token,
-      params: { url, ...(geo && { geo }) },
+      params,
     });
 
     returnData.push({
