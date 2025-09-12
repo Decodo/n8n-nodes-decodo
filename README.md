@@ -20,9 +20,9 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 The node requires a Decodo Scraper API Web Advanced plan. Free trials available in [dashboard](https://dashboard.decodo.com/).
 
-Once you have a plan activated, take a note of your generated username and password:
+Once you have a plan activated, take a note of your generated authentication token:
 
-<img src="docs/decodo_dashboard.png">
+<img src="docs/decodo_dashboard_auth.png">
 
 ## Seting up credentials on n8n
 
@@ -38,9 +38,9 @@ Once you have a plan activated, take a note of your generated username and passw
 
 <img src="docs/creds_03.png">
 
-4. Fill in your username and password
+4. Fill in your authentication token:
 
-<img src="docs/creds_04.png">
+<img src="docs/n8n_auth.png">
 
 ## Using the node
 
@@ -66,10 +66,11 @@ scrape wikipedia and tell me who won nba in 2025
 
 The following parameters are inferred automatically from messages:
 
-| Parameter | Description                           | Example message                                                                         |
-| --------- | ------------------------------------- | --------------------------------------------------------------------------------------- |
-| `url`     | The target URL to scrape              | Scrape wikipedia and tell me the article of the day.                                    |
-| `geo`     | The country name from which to scrape | Scrape https://ip.decodo.com/json and tell me what city did the request originate from. |
+| Parameter | Description                           				 | Example message                                                                         |
+| --------- | -----------------------------------------------| --------------------------------------------------------------------------------------- |
+| `url`     | The target URL to scrape              				 | Scrape wikipedia and tell me the article of the day.                                    |
+| `geo`     | The country name from which to scrape          | Scrape https://ip.decodo.com/json and tell me what city did the request originate from. |
+| `markdown`| Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format.                 |
 
 ## Development & Releases
 
