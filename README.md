@@ -1,106 +1,145 @@
-# n8n-nodes-decodo
+# Decodo n8n Node
 
-This repo contains the source code for integrating [Decodo's Scraper API](https://decodo.com/scraping) with [n8n](https://n8n.io). The node supports scraping the contents of a target URL using Scraper API, which automcatically circumvents website blocks and bot protection.
+This repository provides an n8n integration for **Decodo's  Web Scraping API**, a powerful web scraping tool that automatically bypasses blocks and bot protection to extract data from any target URL. It's designed for developers and startups looking to automate data collection workflows from platforms like Google, eCommerce sites, and job boards.
 
-[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform that lets you connect apps, APIs, and services to build automated workflows with minimal effort.
+
+## Features
+- **Easy integration**. Plug the Decodo's n8n node into existing workflows to start scraping with minimal setup.
+- **Bypassing CAPTCHAs, rate-limits, and IP bans**. Automatic handling of common anti-bot defenses.
+- **Geo-targeting**. Request region-specific results from websites that restrict content based on location.
+- **Rotating proxy support to avoid IP bans**. Built-in proxy rotation to keep requests distributed and persistent.
+- **Structured data output**. Get results in JSON or Markdown formats for easy readability and further analysis.
 
 ## Installation
+Decodo is an official node integrated into n8n. To use it, simply:
+1. Open the nodes panel.
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+<img src="docs/n8n-node-tab.png" width="500px">
 
-## How to use
+2. Search for "Decodo" to find the node.
 
-1. Obtain a Decodo Scraper API Web Advanced plan.
+<img src="docs/n8n-decodo-search.png" width="500px">
 
-2. Fill in Decodo credentials in n8n (see below).
+3. Click **+ Add to workflow**.
 
-3. Start using the node.
+<img src="docs/n8n-decodo-add-to-workflow.png" width="500px">
 
-## Obtaining a Decodo account
 
-The node requires a Decodo Scraper API Web Advanced plan. Free trials available in [dashboard](https://dashboard.decodo.com/).
+### Obtaining a Decodo account
 
-Once you have a plan activated, take a note of your generated authentication token:
+The node requires a [Decodo Web Scraping API](https://decodo.com/scraping) Advanced plan. You can get started with a free trial on the [dashboard](https://dashboard.decodo.com/).
 
-<img src="docs/decodo_dashboard_auth.png">
+Once you have a plan activated, take a note of your generated authentication token from the [Web Scraping API page](https://dashboard.decodo.com/web-scraping-api/scraper):
 
-## Seting up credentials on n8n
+<img src="docs/decodo_dashboard_auth.png" width="500px">
 
-1. Open the credentials window on n8n:
+### Setting up credentials on n8n
 
-<img src="docs/creds_01.png">
+1. Open the credentials window on n8n.
 
-2. Create a new credential:
+<img src="docs/creds_01.png" width="500px">
 
-<img src="docs/creds_02.png" width="200px">
+2. Create a new credential.
 
-3. Find the Decodo Credentials API:
+<img src="docs/creds_02.png" width="500px">
 
-<img src="docs/creds_03.png">
+3. Find the *Decodo Credentials API*.
 
-4. Fill in your authentication token:
+<img src="docs/creds_03.png" width="500px">
 
-<img src="docs/n8n_auth.png">
+4. Enter your authentication token.
+
+<img src="docs/n8n_auth.png" width="500px">
 
 ## Using the node
+The node can be used in 2 ways - as an individual HTTP request node, or a tool for an AI agent.
 
-The node is intended to be used as a tool for an AI agent. The most simple setup would look like this:
+### Individual node
+To use the Decodo node by itself, connect it to an existing workflow. Once you add it, you can set the target **URL** and **Geolocation**.
 
-<img src="docs/n8n_setup.png">
+<img src="docs/n8n-decodo-node-config.png" width="500px">
 
-With this setup, you can ask the agent to scrape a website in order to extract information.
+The node requests the target URL through a proxy in the chosen location, scrapes the page, and returns the response for use by downstream nodes such as the **HTML** node to extract content. Below is an example setup:
 
-As an example, if your AI model does not have access to the most recent web information, the following question may fail:
+<img src="docs/n8n-decodo-workflow.png" width="500px">
+
+### AI agent tool
+
+You can connect the Decodo node to the AI Agent node as a tool. You don't need to modify anything inside the node. Here's what a simple setup would look like:
+
+<img src="docs/n8n_setup.png" width="500px">
+
+With this setup, you can prompt the agent to scrape a website in order to extract information. The prompt must be detailed and specific to return the best results.
+
+**Bad prompt example**
+
+If your AI model does not have access to the most recent web information, the following question may fail:
 
 ```
-who won nba in 2025?
+Who won the NBA in 2025?
 ```
 
-The question can be answered by updating the prompt with an instruction to scrape a reliable source:
+**Good prompt example**
+
+The question is more likely to be answered by updating the prompt with an instruction to scrape a reliable source:
 
 ```
-scrape wikipedia and tell me who won nba in 2025
+Scrape Wikipedia and tell me who won the NBA in 2025.
 ```
 
-### Parameters
+## Parameters
 
-The following parameters are inferred automatically from messages:
+When used as an AI tool, the following parameters are inferred automatically from messages:
 
 | Parameter | Description                           				 | Example message                                                                         |
 | --------- | -----------------------------------------------| --------------------------------------------------------------------------------------- |
-| `url`     | The target URL to scrape              				 | Scrape wikipedia and tell me the article of the day.                                    |
-| `geo`     | The country name from which to scrape          | Scrape https://ip.decodo.com/json and tell me what city did the request originate from. |
+| `url`     | The target URL to scrape              				 | Scrape Wikipedia and tell me the article of the day.                                    |
+| `geo` | The country name from which to scrape | Scrape https://ip.decodo.com/json and tell me what city the request originated from. |
 | `markdown`| Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format.                 |
 
-## Development & Releases
+If used as an individual node, these parameters can be manually configured by double-clicking on the node. 
 
+## Development & releases
+
+### Contribution
 To contribute to this node:
 
-- Install n8n globally in your development machine.
-- Pull and build this repo.
-- Inside the project folder, run `npm link` after building to make your local build of `@decodo/n8n-nodes-decodo` available in the local npm registry.
-- Inside `~/.n8n/nodes/node_modules/`, run `npm link @decodo/n8n-nodes-decodo`.
+1. Install n8n globally in your development machine.
+2. Pull this repository.
+```
+git clone https://github.com/Decodo/n8n-nodes-decodo.git
 
-See this doc for more info: https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally
+```
+3. Navigate to the downloaded folder and build it.
+```
+cd n8n-nodes-decodo
+npm install
+npm run build
+```
+4. Inside the project folder, run `npm link` after building to make your local build of `@decodo/n8n-nodes-decodo` available in the local npm registry.
+5. Inside `~/.n8n/nodes/node_modules/`, run `npm link @decodo/n8n-nodes-decodo`.
 
-### Automated Releases
+See this [documentation page](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally) for more information.
+
+### Automated releases
 
 This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `main` branch, the following happens automatically:
 
-1. **Semantic Analysis**: Commit messages are analyzed to determine the type of release (patch, minor, major)
-2. **Version Bump**: The version in `package.json` is automatically updated
-3. **NPM Publish**: The package is built and published to npm as `@decodo/n8n-nodes-decodo`
-4. **GitHub Release**: A GitHub release is created with automatically generated release notes
-5. **Git Tag**: A git tag is created for the new version
+1. **Semantic analysis**. Commit messages are analyzed to determine the type of release (patch, minor, major).
+2. **Version bump**. The version in `package.json` is automatically updated.
+3. **NPM publish**. The package is built and published to npm as `@decodo/n8n-nodes-decodo`.
+4. **GitHub release**. A GitHub release is created with automatically generated release notes.
+5. **Git tag**. A git tag is created for the new version.
 
-### Required Secrets
+### Required secrets
 
 For automated releases to work, the following GitHub repository secrets must be configured:
 
-- `NPM_TOKEN`: An npm access token with publish permissions for the `@decodo` organization
-- `GITHUB_TOKEN`: Automatically provided by GitHub Actions (no setup required)
+- `NPM_TOKEN`. An npm access token with publish permissions for the `@decodo` organization.
+- `GITHUB_TOKEN`. Automatically provided by GitHub Actions (no setup required).
 
-### Commit Message Format
+### Commit message format
 
 To trigger releases, use conventional commit messages:
 
@@ -111,7 +150,7 @@ To trigger releases, use conventional commit messages:
 
 ## Compatibility
 
-Node has been developed and tested with:
+The Decodo node has been developed and tested with:
 
 - Node.js v22.17.0
 - n8n nodes API version 1
@@ -121,3 +160,6 @@ Node has been developed and tested with:
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 - [Decodo Scraper API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
+
+## Further reading
+- [Complete guide for building n8n web scraping automations](https://decodo.com/blog/n8n-web-scraping-automation)
