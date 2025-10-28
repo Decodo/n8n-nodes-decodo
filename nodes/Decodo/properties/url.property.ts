@@ -5,7 +5,7 @@ export class UrlProperty {
     displayName: 'URL',
     name: 'url',
     type: 'string',
-    default: "={{ $fromAI('url') }}",
+    default: '',
     required: true,
     description: 'Target URL to scrape',
   } satisfies INodeProperties;
