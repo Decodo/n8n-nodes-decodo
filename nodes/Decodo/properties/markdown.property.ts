@@ -1,12 +1,17 @@
 import { INodeProperties } from 'n8n-workflow';
 
 export class MarkdownProperty {
+  static description = 'Retrieve results in markdown.';
+
   static property = {
     displayName: 'Markdown',
     name: 'markdown',
+    description: MarkdownProperty.description,
     type: 'boolean',
-    default: true,
+    default: false,
     required: true,
-    description: 'Whether results are transformed into markdown',
+    displayOptions: {
+      show: { headless: [false] },
+    },
   } satisfies INodeProperties;
 }

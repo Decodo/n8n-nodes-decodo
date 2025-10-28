@@ -1,10 +1,11 @@
 # Decodo n8n Node
 
-This repository provides an n8n integration for **Decodo's  Web Scraping API**, a powerful web scraping tool that automatically bypasses blocks and bot protection to extract data from any target URL. It's designed for developers and startups looking to automate data collection workflows from platforms like Google, eCommerce sites, and job boards.
+This repository provides an n8n integration for **Decodo's Web Scraping API**, a powerful web scraping tool that automatically bypasses blocks and bot protection to extract data from any target URL. It's designed for developers and startups looking to automate data collection workflows from platforms like Google, eCommerce sites, and job boards.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform that lets you connect apps, APIs, and services to build automated workflows with minimal effort.
 
 ## Features
+
 - **Easy integration**. Plug the Decodo's n8n node into existing workflows to start scraping with minimal setup.
 - **Bypassing CAPTCHAs, rate-limits, and IP bans**. Automatic handling of common anti-bot defenses.
 - **Geo-targeting**. Request region-specific results from websites that restrict content based on location.
@@ -12,7 +13,9 @@ This repository provides an n8n integration for **Decodo's  Web Scraping API**, 
 - **Structured data output**. Get results in JSON or Markdown formats for easy readability and further analysis.
 
 ## Installation
+
 Decodo is an official node integrated into n8n. To use it, simply:
+
 1. Open the nodes panel.
 
 <img src="docs/n8n-node-tab.png" width="500px">
@@ -24,7 +27,6 @@ Decodo is an official node integrated into n8n. To use it, simply:
 3. Click **+ Add to workflow**.
 
 <img src="docs/n8n-decodo-add-to-workflow.png" width="500px">
-
 
 ### Obtaining a Decodo account
 
@@ -44,7 +46,7 @@ Once you have a plan activated, take a note of your generated authentication tok
 
 <img src="docs/creds_02.png" width="500px">
 
-3. Find the *Decodo Credentials API*.
+3. Find the _Decodo Credentials API_.
 
 <img src="docs/creds_03.png" width="500px">
 
@@ -53,9 +55,11 @@ Once you have a plan activated, take a note of your generated authentication tok
 <img src="docs/n8n_auth.png" width="500px">
 
 ## Using the node
+
 The node can be used in 2 ways - as an individual HTTP request node, or a tool for an AI agent.
 
 ### Individual node
+
 To use the Decodo node by itself, connect it to an existing workflow. Once you add it, you can set the target **URL** and **Geolocation**.
 
 <img src="docs/n8n-decodo-node-config.png" width="500px">
@@ -92,33 +96,39 @@ Scrape Wikipedia and tell me who won the NBA in 2025.
 
 When used as an AI tool, the following parameters are inferred automatically from messages:
 
-| Parameter | Description                           				 | Example message                                                                         |
-| --------- | -----------------------------------------------| --------------------------------------------------------------------------------------- |
-| `url`     | The target URL to scrape              				 | Scrape Wikipedia and tell me the article of the day.                                    |
-| `geo` | The country name from which to scrape | Scrape https://ip.decodo.com/json and tell me what city the request originated from. |
-| `markdown`| Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format.                 |
+| Parameter  | Description                                    | Example message                                                         |
+| ---------- | ---------------------------------------------- | ----------------------------------------------------------------------- |
+| `url`      | The target URL to scrape                       | Scrape Wikipedia and tell me the article of the day.                    |
+| `headless` | Render JS when scraping                        | Scrape https://ip.decodo.com/json with JS rendering.                    |
+| `geo`      | The country name from which to scrape          | Scrape https://ip.decodo.com/json with United States geolocation.       |
+| `markdown` | Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format. |
 
-If used as an individual node, these parameters can be manually configured by double-clicking on the node. 
+If used as an individual node, these parameters can be manually configured by double-clicking on the node.
 
 ## Development & releases
 
 ### Contribution
+
 To contribute to this node:
 
 1. Install n8n globally in your development machine.
 2. Pull this repository.
+
 ```
 git clone https://github.com/Decodo/n8n-nodes-decodo.git
 
 ```
+
 3. Navigate to the downloaded folder and build it.
+
 ```
 cd n8n-nodes-decodo
 npm install
 npm run build
 ```
+
 4. Inside the project folder, run `npm link` after building to make your local build of `@decodo/n8n-nodes-decodo` available in the local npm registry.
-5. Inside `~/.n8n/nodes/node_modules/`, run `npm link @decodo/n8n-nodes-decodo`.
+5. Inside `~/.n8n/custom`, run `npm link @decodo/n8n-nodes-decodo`.
 
 See this [documentation page](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally) for more information.
 
@@ -162,4 +172,5 @@ The Decodo node has been developed and tested with:
 - [Decodo Scraper API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
 
 ## Further reading
+
 - [Complete guide for building n8n web scraping automations](https://decodo.com/blog/n8n-web-scraping-automation)
