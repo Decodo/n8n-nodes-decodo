@@ -5,7 +5,7 @@ export const queryProperty = {
   displayName: 'Query',
   name: 'query',
   type: 'string',
-  default: "={{ $fromAI('query') }}",
+  default: '',
   displayOptions: { show: { target: QUERY_TARGETS } },
   required: false,
 } satisfies INodeProperties;
