@@ -42,14 +42,14 @@ export class PropertyHandler {
   static transformToScrapingParameters = (params: ScraperApiParams) => {
     return {
       target: params.target,
-      ...(params.url ? { url: params.url } : {}),
-      ...(params.query ? { query: params.query } : {}),
-      ...(params.headless ? { headless: 'html' } : {}),
-      ...(params.parse ? { parse: params.parse } : {}),
-      ...(params.geo ? { geo: params.geo } : {}),
-      ...(params.locale ? { locale: params.locale } : {}),
-      ...(params.results_limit ? { limit: params.results_limit } : {}),
-      ...(params.markdown ? { markdown: params.markdown } : {}),
+      ...(params.url && { url: params.url }),
+      ...(params.query && { query: params.query }),
+      ...(params.headless && { headless: 'html' }),
+      ...(params.parse && { parse: params.parse }),
+      ...(params.geo && { geo: params.geo }),
+      ...(params.locale && { locale: params.locale }),
+      ...(params.results_limit && { limit: params.results_limit }),
+      ...(params.markdown && { markdown: params.markdown }),
     };
   };
 }
