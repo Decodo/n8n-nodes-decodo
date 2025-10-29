@@ -2,13 +2,10 @@ import { INodeProperties } from 'n8n-workflow';
 import { HEADLESS_TARGETS } from '../constants';
 
 export class HeadlessProperty {
-  static description =
-    'Some pages may use javascript to load content dynamically, to enable this, turn on JS Rendering.';
-
   static property = {
     displayName: 'JS Rendering',
     name: 'headless',
-    description: HeadlessProperty.description,
+    description: 'Whether pages are allowed to render content dynamically using javascript',
     type: 'boolean',
     default: true,
     required: true,
