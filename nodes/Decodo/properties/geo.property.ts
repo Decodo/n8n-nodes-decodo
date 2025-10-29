@@ -6,9 +6,9 @@ export class GeoProperty {
   static property = {
     displayName: 'Geolocation',
     name: 'geo',
+    description: GeoProperty.description,
     type: 'string',
     default: '',
     required: false,
-    description: GeoProperty.description,
   } satisfies INodeProperties;
 }
