@@ -19,6 +19,10 @@ export class TargetProperty {
         name: 'Google Search',
         value: TARGET.GOOGLE_SEARCH,
       },
+      {
+        name: 'Amazon',
+        value: TARGET.AMAZON,
+      },
     ],
   } satisfies INodeProperties;
 }
