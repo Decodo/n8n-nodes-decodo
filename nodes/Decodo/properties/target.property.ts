@@ -23,6 +23,10 @@ export class TargetProperty {
         name: 'Amazon',
         value: TARGET.AMAZON,
       },
+      {
+        name: 'Youtube Transcript',
+        value: TARGET.YOUTUBE_TRANSCRIPT,
+      },
     ],
   } satisfies INodeProperties;
 }
