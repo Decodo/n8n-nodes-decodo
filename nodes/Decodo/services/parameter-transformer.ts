@@ -10,6 +10,9 @@ import {
   ParseProperty,
   LimitProperty,
   QueryProperty,
+  VideoIdProperty,
+  TranscriptOriginProperty,
+  LanguageCodeProperty,
 } from '../properties';
 
 export class PropertyHandler {
@@ -17,8 +20,11 @@ export class PropertyHandler {
     TargetProperty.property,
     UrlProperty.property,
     QueryProperty.property,
+    VideoIdProperty.property,
     HeadlessProperty.property,
     ParseProperty.property,
+    TranscriptOriginProperty.property,
+    LanguageCodeProperty.property,
     GeoProperty.property,
     LocaleProperty.property,
     LimitProperty.property,
@@ -44,10 +50,13 @@ export class PropertyHandler {
       target: params.target,
       ...(params.url && { url: params.url }),
       ...(params.query && { query: params.query }),
+      ...(params.video_id && { query: params.video_id }),
       ...(params.headless && { headless: 'html' }),
       ...(params.parse && { parse: params.parse }),
       ...(params.geo && { geo: params.geo }),
       ...(params.locale && { locale: params.locale }),
+      ...(params.transcript_origin && { transcript_origin: params.transcript_origin }),
+      ...(params.language_code && { language_code: params.language_code }),
       ...(params.results_limit && { limit: params.results_limit }),
       ...(params.markdown && { markdown: params.markdown }),
     };
