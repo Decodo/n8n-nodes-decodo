@@ -1,4 +1,4 @@
-import { INodeProperties } from 'n8n-workflow';
+import { INodeProperties, NodeParameterValueType } from 'n8n-workflow';
 import { ScraperApiParams } from '../types';
 import { Utils } from './utils';
 import {
@@ -37,7 +37,11 @@ export class PropertyHandler {
   ];
 
   static getParameters = (
-    getValue: (name: string, itemIndex: number, fallback?: unknown) => Record<string, unknown>,
+    getValue: (
+      name: string,
+      itemIndex: number,
+      fallback?: unknown,
+    ) => NodeParameterValueType | object | undefined,
   ): ScraperApiParams => {
     const out: Record<string, unknown> = {};
 
