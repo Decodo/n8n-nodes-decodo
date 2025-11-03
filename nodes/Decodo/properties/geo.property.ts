@@ -1,4 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
+import { GEO_TARGETS } from '../constants';
 
 export class GeoProperty {
   static property = {
@@ -9,5 +10,6 @@ export class GeoProperty {
     type: 'string',
     default: '',
     required: false,
+    displayOptions: { show: { target: GEO_TARGETS } },
   } satisfies INodeProperties;
 }

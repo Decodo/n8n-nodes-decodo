@@ -1,5 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-import { TARGET } from '../constants';
+import { LOCALE_TARGETS } from '../constants';
 
 export class LocaleProperty {
   static property = {
@@ -11,7 +11,7 @@ export class LocaleProperty {
     default: '',
     required: false,
     displayOptions: {
-      show: { target: [TARGET.GOOGLE_SEARCH] },
+      show: { target: LOCALE_TARGETS },
     },
   } satisfies INodeProperties;
 }
