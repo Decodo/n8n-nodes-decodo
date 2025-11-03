@@ -1,5 +1,7 @@
 import { TARGET } from './constants';
 
+export type RedditSort = 'best' | 'hot' | 'new' | 'rising' | 'top';
+
 export type ScraperApiParams = {
   target?: TARGET;
   url?: string;
@@ -13,4 +15,6 @@ export type ScraperApiParams = {
   language_code?: string;
   results_limit?: string;
   markdown?: boolean;
+  subreddit?: string;
+  reddit_sort?: RedditSort;
 };

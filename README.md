@@ -94,7 +94,7 @@ Scrape Wikipedia and tell me who won the NBA in 2025.
 
 ## Parameters
 
-When used as an AI tool, the following parameters are inferred automatically from messages:
+When used as an AI tool, most parameters can be inferred automatically from messages, for example:
 
 | Parameter  | Description                                    | Example message                                                         |
 | ---------- | ---------------------------------------------- | ----------------------------------------------------------------------- |
@@ -103,7 +103,7 @@ When used as an AI tool, the following parameters are inferred automatically fro
 | `geo`      | The country name from which to scrape          | Scrape https://ip.decodo.com/json with United States geolocation.       |
 | `markdown` | Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format. |
 
-If used as an individual node, these parameters can be manually configured by double-clicking on the node.
+If used as an individual node, all parameters can be manually configured by double-clicking on the node.
 
 ## Development & releases
 
