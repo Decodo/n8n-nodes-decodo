@@ -27,6 +27,10 @@ export class TargetProperty {
         name: 'Youtube Transcript',
         value: TARGET.YOUTUBE_TRANSCRIPT,
       },
+      {
+        name: 'Reddit Subreddit',
+        value: TARGET.REDDIT_SUBDREDDIT,
+      },
     ],
   } satisfies INodeProperties;
 }

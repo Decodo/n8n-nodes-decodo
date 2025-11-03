@@ -1,5 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import { ScraperApiParams } from '../types';
+import { Utils } from './utils';
 import {
   TargetProperty,
   UrlProperty,
@@ -13,6 +14,8 @@ import {
   VideoIdProperty,
   TranscriptOriginProperty,
   LanguageCodeProperty,
+  SubredditProperty,
+  RedditSortProperty,
 } from '../properties';
 
 export class PropertyHandler {
@@ -21,6 +24,7 @@ export class PropertyHandler {
     UrlProperty.property,
     QueryProperty.property,
     VideoIdProperty.property,
+    SubredditProperty.property,
     HeadlessProperty.property,
     ParseProperty.property,
     TranscriptOriginProperty.property,
@@ -29,6 +33,7 @@ export class PropertyHandler {
     LocaleProperty.property,
     LimitProperty.property,
     MarkdownProperty.property,
+    RedditSortProperty.property,
   ];
 
   static getParameters = (
@@ -49,6 +54,7 @@ export class PropertyHandler {
     return {
       target: params.target,
       ...(params.url && { url: params.url }),
+      ...(params.subreddit && { url: Utils.getSubredditUrl(params.subreddit, params.reddit_sort) }),
       ...(params.query && { query: params.query }),
       ...(params.video_id && { query: params.video_id }),
       ...(params.headless && { headless: 'html' }),
