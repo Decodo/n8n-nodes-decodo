@@ -4,6 +4,7 @@ import {
   INodeType,
   INodeTypeDescription,
   NodeConnectionType,
+  NodeOperationError,
 } from 'n8n-workflow';
 import { ScraperApiService } from './services/scraper-api-service';
 import { PropertyHandler } from './services/parameter-transformer';
@@ -37,31 +38,32 @@ export class Decodo implements INodeType {
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const returnData: INodeExecutionData[] = [];
+    const items = this.getInputData();
 
     const { token } = await this.getCredentials('decodoApi');
 
-    const parameters = PropertyHandler.getParameters(
-      this.getNodeParameter as (
-        name: string,
-        itemIndex: number,
-        fallback?: unknown,
-      ) => Record<string, unknown>,
-    );
-    const params = PropertyHandler.transformToScrapingParameters(parameters);
+    for (let i = 0; i < items.length; i++) {
+      try {
+        const nodeParameters = PropertyHandler.getParameters(this.getNodeParameter);
+        const scrapingParameters = PropertyHandler.transformToScrapingParameters(nodeParameters);
 
-    const resBody = await ScraperApiService.scrape({
-      n8n: this,
-      creds: Decodo.CREDS,
-      token,
-      params,
-    });
+        const responseBody = await ScraperApiService.scrape({
+          n8n: this,
+          creds: Decodo.CREDS,
+          token,
+          params: scrapingParameters,
+        });
 
-    returnData.push({
-      json: {
-        data: resBody,
-      },
-    });
+        returnData.push({ json: responseBody, pairedItem: i });
+      } catch (error) {
+        if (this.continueOnFail()) {
+          returnData.push({ json: { error: error.message }, pairedItem: i });
+        } else {
+          throw new NodeOperationError(this.getNode(), error, { itemIndex: i });
+        }
+      }
+    }
 
-    return [this.helpers.returnJsonArray(returnData)];
+    return [returnData];
   }
 }
