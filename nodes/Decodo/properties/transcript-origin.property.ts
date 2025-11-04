@@ -15,7 +15,7 @@ export class TranscriptOriginProperty {
     ],
     required: false,
     displayOptions: {
-      show: { target: [TARGET.YOUTUBE_TRANSCRIPT] },
+      show: { operation: [TARGET.YOUTUBE_TRANSCRIPT] },
     },
   } satisfies INodeProperties;
 }

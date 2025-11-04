@@ -10,6 +10,6 @@ export class LanguageCodeProperty {
     type: 'string',
     default: '',
     required: true,
-    displayOptions: { show: { target: [TARGET.YOUTUBE_TRANSCRIPT] } },
+    displayOptions: { show: { operation: [TARGET.YOUTUBE_TRANSCRIPT] } },
   } satisfies INodeProperties;
 }

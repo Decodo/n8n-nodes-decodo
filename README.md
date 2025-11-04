@@ -174,7 +174,7 @@ The Decodo node has been developed and tested with:
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [Decodo Scraper API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
+- [Decodo's Web Scraping API documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
 
 ## Further reading
 

@@ -11,7 +11,7 @@ export class UrlProperty {
     required: true,
     displayOptions: {
       show: {
-        target: URL_TARGETS,
+        operation: URL_TARGETS,
       },
     },
   } satisfies INodeProperties;

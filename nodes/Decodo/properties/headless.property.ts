@@ -9,6 +9,6 @@ export class HeadlessProperty {
     type: 'boolean',
     default: true,
     required: true,
-    displayOptions: { show: { target: HEADLESS_TARGETS } },
+    displayOptions: { show: { operation: HEADLESS_TARGETS } },
   } satisfies INodeProperties;
 }

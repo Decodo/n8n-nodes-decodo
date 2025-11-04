@@ -17,6 +17,6 @@ export class RedditSortProperty {
       { name: 'Rising', value: 'rising' },
       { name: 'Top', value: 'top' },
     ],
-    displayOptions: { show: { target: [TARGET.REDDIT_SUBDREDDIT] } },
+    displayOptions: { show: { operation: [TARGET.REDDIT_SUBDREDDIT] } },
   } satisfies INodeProperties;
 }
