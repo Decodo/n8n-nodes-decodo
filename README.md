@@ -112,6 +112,11 @@ If used as an individual node, all parameters can be manually configured by doub
 To contribute to this node:
 
 1. Install n8n globally in your development machine.
+
+```
+npm install n8n -g
+```
+
 2. Pull this repository.
 
 ```
