@@ -19,7 +19,7 @@ export class TargetProperty {
       {
         name: 'Google Search',
         value: TARGET.GOOGLE_SEARCH,
-        action: 'Scrape using Search target',
+        action: 'Scrape using Google Search target',
       },
       {
         name: 'Amazon',
