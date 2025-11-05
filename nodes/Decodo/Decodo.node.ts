@@ -19,7 +19,7 @@ export class Decodo implements INodeType {
     name: 'decodo',
     group: ['transform'],
     version: 1,
-    description: "Decodo's Scraper API",
+    description: "Decodo's Web Scraping API",
     icon: 'file:decodo.svg',
     defaults: {
       name: Decodo.NAME,

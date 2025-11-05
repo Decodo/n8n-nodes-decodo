@@ -10,6 +10,6 @@ export class GeoProperty {
     type: 'string',
     default: '',
     required: false,
-    displayOptions: { show: { target: GEO_TARGETS } },
+    displayOptions: { show: { operation: GEO_TARGETS } },
   } satisfies INodeProperties;
 }

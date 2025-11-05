@@ -10,7 +10,7 @@ export class VideoIdProperty {
     default: '',
     required: true,
     displayOptions: {
-      show: { target: [TARGET.YOUTUBE_TRANSCRIPT] },
+      show: { operation: [TARGET.YOUTUBE_TRANSCRIPT] },
     },
   } satisfies INodeProperties;
 }

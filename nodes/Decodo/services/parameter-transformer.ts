@@ -56,7 +56,7 @@ export class PropertyHandler {
 
   static transformToScrapingParameters = (params: ScraperApiParams) => {
     return {
-      target: params.target,
+      target: params.operation,
       ...(params.url && { url: params.url }),
       ...(params.subreddit && { url: Utils.getSubredditUrl(params.subreddit, params.reddit_sort) }),
       ...(params.query && { query: params.query }),

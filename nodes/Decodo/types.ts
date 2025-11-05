@@ -3,7 +3,7 @@ import { TARGET } from './constants';
 export type RedditSort = 'best' | 'hot' | 'new' | 'rising' | 'top';
 
 export type ScraperApiParams = {
-  target?: TARGET;
+  operation?: TARGET;
   url?: string;
   query?: string;
   video_id?: string;

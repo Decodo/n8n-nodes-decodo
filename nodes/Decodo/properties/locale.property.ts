@@ -11,7 +11,7 @@ export class LocaleProperty {
     default: '',
     required: false,
     displayOptions: {
-      show: { target: LOCALE_TARGETS },
+      show: { operation: LOCALE_TARGETS },
     },
   } satisfies INodeProperties;
 }

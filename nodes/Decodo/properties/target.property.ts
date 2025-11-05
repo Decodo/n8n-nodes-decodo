@@ -4,7 +4,7 @@ import { TARGET } from '../constants';
 export class TargetProperty {
   static property = {
     displayName: 'Target',
-    name: 'target',
+    name: 'operation',
     description: 'Decodo Scraper API supported target',
     type: 'options',
     default: `${TARGET.UNIVERSAL}`,
@@ -14,22 +14,27 @@ export class TargetProperty {
       {
         name: 'Universal',
         value: TARGET.UNIVERSAL,
+        action: 'Scrape using Universal target',
       },
       {
         name: 'Google Search',
         value: TARGET.GOOGLE_SEARCH,
+        action: 'Scrape using Google Search target',
       },
       {
         name: 'Amazon',
         value: TARGET.AMAZON,
+        action: 'Scrape using Amazon target',
       },
       {
-        name: 'Youtube Transcript',
+        name: 'YouTube Transcript',
         value: TARGET.YOUTUBE_TRANSCRIPT,
+        action: 'Scrape using YouTube Transcript target',
       },
       {
         name: 'Reddit Subreddit',
         value: TARGET.REDDIT_SUBDREDDIT,
+        action: 'Scrape using Reddit Subreddit target',
       },
     ],
   } satisfies INodeProperties;

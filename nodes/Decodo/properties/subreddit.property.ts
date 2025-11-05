@@ -10,7 +10,7 @@ export class SubredditProperty {
     default: '',
     required: true,
     displayOptions: {
-      show: { target: [TARGET.REDDIT_SUBDREDDIT] },
+      show: { operation: [TARGET.REDDIT_SUBDREDDIT] },
     },
   } satisfies INodeProperties;
 }

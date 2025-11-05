@@ -9,6 +9,6 @@ export class QueryProperty {
     type: 'string',
     default: '',
     required: true,
-    displayOptions: { show: { target: QUERY_TARGETS } },
+    displayOptions: { show: { operation: QUERY_TARGETS } },
   } satisfies INodeProperties;
 }

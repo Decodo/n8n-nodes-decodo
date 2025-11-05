@@ -14,7 +14,7 @@ export class LimitProperty {
       maxValue: 100,
     },
     displayOptions: {
-      show: { target: [TARGET.GOOGLE_SEARCH] },
+      show: { operation: [TARGET.GOOGLE_SEARCH] },
     },
   } satisfies INodeProperties;
 }

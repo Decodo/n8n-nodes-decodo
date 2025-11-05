@@ -11,7 +11,7 @@ export class ParseProperty {
     default: true,
     required: false,
     displayOptions: {
-      show: { target: PARSE_TARGETS },
+      show: { operation: PARSE_TARGETS },
     },
   } satisfies INodeProperties;
 }
