@@ -44,7 +44,10 @@ export class Decodo implements INodeType {
 
     for (let i = 0; i < items.length; i++) {
       try {
-        const nodeParameters = PropertyHandler.getParameters(this.getNodeParameter);
+        const nodeParameters = PropertyHandler.getParametersWithFallback({
+          getNodeParameters: this.getNodeParameter,
+          index: i,
+        });
         const scrapingParameters = PropertyHandler.transformToScrapingParameters(nodeParameters);
 
         const responseBody = await ScraperApiService.scrape({

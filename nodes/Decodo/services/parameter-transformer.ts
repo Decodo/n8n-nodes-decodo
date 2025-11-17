@@ -36,19 +36,23 @@ export class PropertyHandler {
     RedditSortProperty.property,
   ];
 
-  static getParameters = (
-    getValue: (
+  static getParametersWithFallback = ({
+    getNodeParameters,
+    index,
+  }: {
+    getNodeParameters: (
       name: string,
       itemIndex: number,
       fallback?: unknown,
-    ) => NodeParameterValueType | object | undefined,
-  ): ScraperApiParams => {
+    ) => NodeParameterValueType | object | undefined;
+    index: number;
+  }): ScraperApiParams => {
     const out: Record<string, unknown> = {};
 
     for (const prop of PropertyHandler.properties) {
       const { name, type } = prop;
       const fallback = type === 'boolean' ? false : prop.default;
-      out[name] = getValue(name, 0, fallback);
+      out[name] = getNodeParameters(name, index, fallback);
     }
 
     return out;
