@@ -18,3 +18,22 @@ export const GEO_TARGETS = [
 export const LOCALE_TARGETS = [TARGET.GOOGLE_SEARCH];
 export const MARKDOWN_TARGETS = [TARGET.UNIVERSAL, TARGET.GOOGLE_SEARCH];
 export const PARSE_TARGETS = [TARGET.GOOGLE_SEARCH, TARGET.AMAZON];
+
+export enum AUTH_TYPE {
+  TOKEN = 'token',
+  API_KEY = 'apiKey',
+}
+
+export const API_BASE_URL: Record<AUTH_TYPE, string> = {
+  [AUTH_TYPE.TOKEN]: 'https://scraper-api.decodo.com',
+  [AUTH_TYPE.API_KEY]: 'https://data.decodo.com',
+};
+
+export const SCRAPE_PATH: Record<AUTH_TYPE, string> = {
+  [AUTH_TYPE.TOKEN]: '/v2/scrape',
+  [AUTH_TYPE.API_KEY]: '/v1/scrape',
+};
+
+export const INTEGRATION_HEADER = 'n8n';
+
+export const AUTH_PROBE_URL = 'https://does-not-exist.decodo.com';
