@@ -7,6 +7,7 @@ import {
   NodeOperationError,
 } from 'n8n-workflow';
 import { ScraperApiService } from './services/scraper-api-service';
+import { detectAuthType } from './services/detect-auth-type';
 import { PropertyHandler } from './services/parameter-transformer';
 
 export class Decodo implements INodeType {
@@ -40,7 +41,8 @@ export class Decodo implements INodeType {
     const returnData: INodeExecutionData[] = [];
     const items = this.getInputData();
 
-    const { token } = await this.getCredentials('decodoApi');
+    const { token } = await this.getCredentials(Decodo.CREDS);
+    const resolvedAuthType = detectAuthType(String(token ?? '').trim());
 
     for (let i = 0; i < items.length; i++) {
       try {
@@ -53,7 +55,7 @@ export class Decodo implements INodeType {
         const responseBody = await ScraperApiService.scrape({
           n8n: this,
           creds: Decodo.CREDS,
-          token,
+          authType: resolvedAuthType,
           params: scrapingParameters,
         });
 

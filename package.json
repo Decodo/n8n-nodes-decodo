@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/Decodo/n8n-nodes-decodo.git"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "engines": {
     "node": ">=20.15"
   },

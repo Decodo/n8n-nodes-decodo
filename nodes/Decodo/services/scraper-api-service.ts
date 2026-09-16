@@ -1,27 +1,25 @@
-import { CredentialInformation, IExecuteFunctions } from 'n8n-workflow';
+import { IExecuteFunctions } from 'n8n-workflow';
+import { API_BASE_URL, AUTH_TYPE, INTEGRATION_HEADER, SCRAPE_PATH } from '../constants';
 
 export class ScraperApiService {
-  static SERVICE_URL_PROD = 'https://scraper-api.decodo.com/v2/scrape';
-
   static async scrape({
     n8n,
     creds,
-    token,
+    authType,
     params,
   }: {
     n8n: IExecuteFunctions;
     creds: string;
-    token: CredentialInformation;
+    authType: AUTH_TYPE;
     params: object;
   }) {
     const resBody = await n8n.helpers.httpRequestWithAuthentication.call(n8n, creds, {
-      url: this.SERVICE_URL_PROD,
+      url: `${API_BASE_URL[authType]}${SCRAPE_PATH[authType]}`,
       method: 'POST',
       headers: {
-        authorization: `Basic ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'x-integration': 'n8n',
+        'x-integration': INTEGRATION_HEADER,
       },
       body: params,
     });
