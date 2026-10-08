@@ -4,7 +4,7 @@ import {
   ICredentialType,
   INodeProperties,
 } from 'n8n-workflow';
-import { API_BASE_URL, AUTH_PROBE_URL, AUTH_TYPE, SCRAPE_PATH, TARGET } from '../nodes/Decodo/constants';
+import { API_BASE_URL, AUTH_PROBE_URL, AUTH_TYPE, INTEGRATION_HEADER, SCRAPE_PATH, TARGET } from '../nodes/Decodo/constants';
 import { detectAuthType } from '../nodes/Decodo/services/detect-auth-type';
 
 const REJECTED_STATUSES: number[] = [];
@@ -50,6 +50,7 @@ export class DecodoApi implements ICredentialType {
     request: {
       url: '',
       method: 'POST',
+      headers: { 'x-integration': INTEGRATION_HEADER },
       body: { target: TARGET.UNIVERSAL, url: AUTH_PROBE_URL },
       ignoreHttpStatusErrors: {
         ignore: true,
