@@ -32,7 +32,7 @@ Decodo is an official node integrated into n8n. To use it, simply:
 
 The node requires a [Decodo Web Scraping API](https://decodo.com/scraping) Advanced plan. You can get started with a free trial on the [dashboard](https://dashboard.decodo.com/).
 
-Once you have a plan activated, take a note of your generated authentication token from the [Web Scraping API page](https://dashboard.decodo.com/web-scraping-api/scraper):
+Once you have a plan activated, copy your Web Data API key from your Web Data API subscription on the [dashboard](https://dashboard.decodo.com/web-data/playground). Older plans only have a basic authentication token, which you can use in the same field:
 
 <img src="docs/decodo_dashboard_auth.png" width="500px">
 
@@ -50,7 +50,7 @@ Once you have a plan activated, take a note of your generated authentication tok
 
 <img src="docs/creds_03.png" width="500px">
 
-4. Enter your authentication token.
+4. Paste your API key into the **Authentication Token** field. A basic authentication token works there too, and the credential detects which one you entered.
 
 <img src="docs/n8n_auth.png" width="500px">
 
