@@ -22,6 +22,7 @@ export class Decodo implements INodeType {
     version: 1,
     description: "Decodo's Web Scraping API",
     icon: 'file:decodo.svg',
+    subtitle: '={{$parameter["operation"]}}',
     defaults: {
       name: Decodo.NAME,
     },
