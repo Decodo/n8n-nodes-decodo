@@ -11,9 +11,11 @@ import { detectAuthType } from './services/detect-auth-type';
 import { PropertyHandler } from './services/parameter-transformer';
 import { TargetProperty } from './properties/target.property';
 
-const TARGET_NAMES = Object.fromEntries(
-  TargetProperty.property.options.map(({ value, name }) => [value, name]),
-);
+// n8n injects the "Custom API Call" option into `operation` at runtime, so it is not in TargetProperty.
+const TARGET_NAMES = {
+  ...Object.fromEntries(TargetProperty.property.options.map(({ value, name }) => [value, name])),
+  __CUSTOM_API_CALL__: 'Custom API Call',
+};
 
 export class Decodo implements INodeType {
   static NAME = 'Decodo';
