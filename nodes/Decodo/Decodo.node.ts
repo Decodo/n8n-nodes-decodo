@@ -9,6 +9,13 @@ import {
 import { ScraperApiService } from './services/scraper-api-service';
 import { detectAuthType } from './services/detect-auth-type';
 import { PropertyHandler } from './services/parameter-transformer';
+import { TargetProperty } from './properties/target.property';
+
+// n8n injects the "Custom API Call" option into `operation` at runtime, so it is not in TargetProperty.
+const TARGET_NAMES = {
+  ...Object.fromEntries(TargetProperty.property.options.map(({ value, name }) => [value, name])),
+  __CUSTOM_API_CALL__: 'Custom API Call',
+};
 
 export class Decodo implements INodeType {
   static NAME = 'Decodo';
@@ -22,6 +29,7 @@ export class Decodo implements INodeType {
     version: 1,
     description: "Decodo's Web Scraping API",
     icon: 'file:decodo.svg',
+    subtitle: `={{ (${JSON.stringify(TARGET_NAMES)})[$parameter["operation"]] }}`,
     defaults: {
       name: Decodo.NAME,
     },

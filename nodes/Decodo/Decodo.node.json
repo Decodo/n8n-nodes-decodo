@@ -1,5 +1,5 @@
 {
-  "node": "n8n-nodes-base.Decodo",
+  "node": "@decodo/n8n-nodes-decodo.Decodo",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
   "categories": ["Miscellaneous"],

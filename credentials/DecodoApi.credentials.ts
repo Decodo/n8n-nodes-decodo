@@ -16,6 +16,7 @@ export class DecodoApi implements ICredentialType {
   name = 'decodoApi';
   displayName = 'Decodo Credentials API';
   documentationUrl = 'https://help.decodo.com/docs/web-scraping-api-introduction';
+  icon = 'file:decodo.svg' as const;
   properties: INodeProperties[] = [
     {
       displayName: 'Authentication Token',
