@@ -4,7 +4,14 @@ import {
   ICredentialType,
   INodeProperties,
 } from 'n8n-workflow';
-import { API_BASE_URL, AUTH_PROBE_URL, AUTH_TYPE, INTEGRATION_HEADER, SCRAPE_PATH, TARGET } from '../nodes/Decodo/constants';
+import {
+  API_BASE_URL,
+  AUTH_PROBE_URL,
+  AUTH_TYPE,
+  INTEGRATION_HEADER,
+  SCRAPE_PATH,
+  TARGET,
+} from '../nodes/Decodo/constants';
 import { detectAuthType } from '../nodes/Decodo/services/detect-auth-type';
 
 const REJECTED_STATUSES: number[] = [];
@@ -40,8 +47,7 @@ export class DecodoApi implements ICredentialType {
 
     requestOptions.headers = {
       ...requestOptions.headers,
-      authorization:
-        authType === AUTH_TYPE.API_KEY ? `Bearer ${value}` : `Basic ${value}`,
+      authorization: authType === AUTH_TYPE.API_KEY ? `Bearer ${value}` : `Basic ${value}`,
     };
 
     return requestOptions;

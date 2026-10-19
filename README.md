@@ -137,31 +137,13 @@ npm run build
 
 See this [documentation page](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally) for more information.
 
-### Automated releases
+### Releases
 
-This project uses automated releases via GitHub Actions and semantic-release. When code is merged into the `main` branch, the following happens automatically:
-
-1. **Semantic analysis**. Commit messages are analyzed to determine the type of release (patch, minor, major).
-2. **Version bump**. The version in `package.json` is automatically updated.
-3. **NPM publish**. The package is built and published to npm as `@decodo/n8n-nodes-decodo`.
-4. **GitHub release**. A GitHub release is created with automatically generated release notes.
-5. **Git tag**. A git tag is created for the new version.
-
-### Required secrets
-
-For automated releases to work, the following GitHub repository secrets must be configured:
-
-- `NPM_TOKEN`. An npm access token with publish permissions for the `@decodo` organization.
-- `GITHUB_TOKEN`. Automatically provided by GitHub Actions (no setup required).
-
-### Commit message format
-
-To trigger releases, use conventional commit messages:
-
-- `feat: new feature` → Minor version bump
-- `fix: bug fix` → Patch version bump
-- `feat!: breaking change` or `BREAKING CHANGE:` in footer → Major version bump
-- `docs:`, `style:`, `refactor:`, `test:`, `chore:` → No release
+Releases are automated. Merging to `main` publishes a new version based on the
+PR title, which must follow [Conventional Commits](https://www.conventionalcommits.org):
+`fix:` → patch, `feat:` → minor, `feat!:` or a `BREAKING CHANGE:` footer → major.
+`chore:`, `docs:`, `ci:`, `refactor:`, `test:` don't release. Don't edit the
+version in the package manifest.
 
 ## Compatibility
 
