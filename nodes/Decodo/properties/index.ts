@@ -8,7 +8,5 @@ export * from './geo.property';
 export * from './locale.property';
 export * from './limit.property';
 export * from './markdown.property';
-export * from './transcript-origin.property';
+export * from './subtitle-origin.property';
 export * from './language-code.property';
-export * from './subreddit.property';
-export * from './reddit-sort.property';

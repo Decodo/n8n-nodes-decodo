@@ -27,14 +27,9 @@ export class TargetProperty {
         action: 'Scrape using Amazon target',
       },
       {
-        name: 'YouTube Transcript',
-        value: TARGET.YOUTUBE_TRANSCRIPT,
-        action: 'Scrape using YouTube Transcript target',
-      },
-      {
-        name: 'Reddit Subreddit',
-        value: TARGET.REDDIT_SUBDREDDIT,
-        action: 'Scrape using Reddit Subreddit target',
+        name: 'YouTube Subtitles',
+        value: TARGET.YOUTUBE_SUBTITLES,
+        action: 'Scrape using YouTube Subtitles target',
       },
     ],
   } satisfies INodeProperties;
