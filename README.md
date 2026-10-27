@@ -92,18 +92,55 @@ The question is more likely to be answered by updating the prompt with an instru
 Scrape Wikipedia and tell me who won the NBA in 2025.
 ```
 
+## Targets
+
+The node has a required **Target** dropdown that determines which Decodo scraping target is called and which other fields appear:
+
+| Target | Primary input | Returns |
+| --- | --- | --- |
+| **Universal** | URL | Raw HTML, or Markdown with JS Rendering off |
+| **Google Search** | Query | Parsed search results |
+| **Amazon** | URL | Parsed product data |
+| **YouTube Transcript** | Video ID | Transcript for one language |
+
+> [!WARNING]
+> **Don't use the YouTube Transcript target for now.** It relies on a retired API target and fails on every request. Until the node is updated, use [YouTube Subtitles](https://help.decodo.com/docs/web-scraping-api-youtube-subtitles) instead, called through n8n's **HTTP Request** node.
+
 ## Parameters
 
-When used as an AI tool, most parameters can be inferred automatically from messages, for example:
+Which fields appear depends on the target you selected. A dash means the field is not offered for that target.
 
-| Parameter  | Description                                    | Example message                                                         |
-| ---------- | ---------------------------------------------- | ----------------------------------------------------------------------- |
-| `url`      | The target URL to scrape                       | Scrape Wikipedia and tell me the article of the day.                    |
-| `headless` | Render JS when scraping                        | Scrape https://ip.decodo.com/json with JS rendering.                    |
-| `geo`      | The country name from which to scrape          | Scrape https://ip.decodo.com/json with United States geolocation.       |
-| `markdown` | Receive Markdown type responce instead of HTML | Scrape https://ip.decodo.com/json and return result in markdown format. |
+| Field | Sent as | Universal | Google Search | Amazon | YouTube Transcript |
+| --- | --- | --- | --- | --- | --- |
+| **URL** | `url` | Required | – | Required | – |
+| **Query** | `query` | – | Required | – | – |
+| **Video ID** | `query` | – | – | – | Required |
+| **Language Code** | `language_code` | – | – | – | Required |
+| **Transcript Origin** | `transcript_origin` | – | – | – | `auto_generated` |
+| **JS Rendering** | `headless: "html"` | On | On | – | – |
+| **Parse** | `parse` | – | On | On | – |
+| **Geolocation** | `geo` | Optional | Optional | Optional | – |
+| **Locale** | `locale` | – | Optional | – | – |
+| **Results Amount** | `limit` | – | `10` | – | – |
+| **Markdown** | `markdown` | Off | Off | – | – |
 
-If used as an individual node, all parameters can be manually configured by double-clicking on the node.
+Where a value is shown instead of "Optional", that is the default the node starts with.
+
+- **JS Rendering** is on by default and sends `headless: "html"`. Turning it off sends no rendering parameter at all.
+- **Markdown** only appears once **JS Rendering** is turned off, so Markdown and JavaScript rendering can't be combined in this node.
+- **Geolocation** takes a country name with a capital first letter, for example `United States`.
+- **Locale** changes the language of the search page interface, not the language of the results, for example `en-US`.
+- **Results Amount** accepts 1 to 100.
+
+When the node is used as an AI agent tool, the agent fills these same fields from your message:
+
+| Parameter | Example message |
+| --- | --- |
+| `url` | Scrape Wikipedia and tell me the article of the day. |
+| `geo` | Scrape https://ip.decodo.com/json and tell me what city the request originated from. |
+| `headless` | Scrape https://ip.decodo.com/json with JS rendering. |
+
+If used as an individual node, all parameters can be manually configured by double-clicking on the node. For the full list of API parameters, see [Parameters](https://help.decodo.com/docs/web-scraping-api-parameters-overview).
 
 ## Development & releases
 
@@ -147,11 +184,10 @@ version in the package manifest.
 
 ## Compatibility
 
-The Decodo node has been developed and tested with:
+The node requires **Node.js 20.15 or newer**. It has been developed and tested with:
 
 - Node.js v22.17.0
 - n8n nodes API version 1
-- [n8n-workflow](https://www.npmjs.com/package/n8n-workflow) v1.82.0
 
 ## Resources
 
