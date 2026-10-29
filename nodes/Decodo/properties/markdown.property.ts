@@ -1,4 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
+import { MARKDOWN_TARGETS, PARSE_TARGETS } from '../constants';
 
 export class MarkdownProperty {
   static property = {
@@ -9,7 +10,17 @@ export class MarkdownProperty {
     default: false,
     required: true,
     displayOptions: {
-      show: { headless: [false] },
+      show: { operation: MARKDOWN_TARGETS.filter((target) => !PARSE_TARGETS.includes(target)) },
+    },
+  } satisfies INodeProperties;
+
+  static withoutParseProperty = {
+    ...MarkdownProperty.property,
+    displayOptions: {
+      show: {
+        operation: MARKDOWN_TARGETS.filter((target) => PARSE_TARGETS.includes(target)),
+        parse: [false],
+      },
     },
   } satisfies INodeProperties;
 }

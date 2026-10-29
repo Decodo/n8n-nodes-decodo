@@ -6,10 +6,10 @@ export class LanguageCodeProperty {
     displayName: 'Language Code',
     name: 'language_code',
     description:
-      'Specifies the language of the transcript, ex: `en`. If the video does not have a transcript matching the language code, HTTP 404 will be returned.',
+      'Specifies the language of the subtitles, ex: `en`. Leave empty to get every available language. If the video does not have subtitles matching the language code, HTTP 404 will be returned.',
     type: 'string',
     default: '',
-    required: true,
-    displayOptions: { show: { operation: [TARGET.YOUTUBE_TRANSCRIPT] } },
+    required: false,
+    displayOptions: { show: { operation: [TARGET.YOUTUBE_SUBTITLES] } },
   } satisfies INodeProperties;
 }

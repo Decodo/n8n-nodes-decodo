@@ -1,5 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
-import { HEADLESS_TARGETS } from '../constants';
+import { HEADLESS_OFF_BY_DEFAULT_TARGETS, HEADLESS_TARGETS } from '../constants';
 
 export class HeadlessProperty {
   static property = {
@@ -10,5 +10,11 @@ export class HeadlessProperty {
     default: true,
     required: true,
     displayOptions: { show: { operation: HEADLESS_TARGETS } },
+  } satisfies INodeProperties;
+
+  static offByDefaultProperty = {
+    ...HeadlessProperty.property,
+    default: false,
+    displayOptions: { show: { operation: HEADLESS_OFF_BY_DEFAULT_TARGETS } },
   } satisfies INodeProperties;
 }

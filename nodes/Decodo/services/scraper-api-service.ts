@@ -24,6 +24,13 @@ export class ScraperApiService {
       body: params,
     });
 
+    if (resBody?.status === 'failed') {
+      const code = resBody.status_code ? ` (${resBody.status_code})` : '';
+      throw new Error(
+        `Decodo could not scrape the target${code}: ${resBody.message ?? 'no reason given'}`,
+      );
+    }
+
     return resBody;
   }
 }

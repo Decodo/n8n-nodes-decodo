@@ -68,6 +68,8 @@ The node requests the target URL through a proxy in the chosen location, scrapes
 
 <img src="docs/n8n-decodo-workflow.png" width="500px">
 
+If Decodo can't scrape the target, the node fails with the API's status code and message. To pass the error downstream instead, set the node's **On Error** setting to **Continue**.
+
 ### AI agent tool
 
 You can connect the Decodo node to the AI Agent node as a tool. You don't need to modify anything inside the node. Here's what a simple setup would look like:
@@ -98,36 +100,34 @@ The node has a required **Target** dropdown that determines which Decodo scrapin
 
 | Target | Primary input | Returns |
 | --- | --- | --- |
-| **Universal** | URL | Raw HTML, or Markdown with JS Rendering off |
+| **Universal** | URL | Raw HTML, or Markdown |
 | **Google Search** | Query | Parsed search results |
 | **Amazon** | URL | Parsed product data |
-| **YouTube Transcript** | Video ID | Transcript for one language |
-
-> [!WARNING]
-> **Don't use the YouTube Transcript target for now.** It relies on a retired API target and fails on every request. Until the node is updated, use [YouTube Subtitles](https://help.decodo.com/docs/web-scraping-api-youtube-subtitles) instead, called through n8n's **HTTP Request** node.
+| **YouTube Subtitles** | Video ID | Subtitles, for one language or all available |
 
 ## Parameters
 
 Which fields appear depends on the target you selected. A dash means the field is not offered for that target.
 
-| Field | Sent as | Universal | Google Search | Amazon | YouTube Transcript |
+| Field | Sent as | Universal | Google Search | Amazon | YouTube Subtitles |
 | --- | --- | --- | --- | --- | --- |
 | **URL** | `url` | Required | – | Required | – |
 | **Query** | `query` | – | Required | – | – |
 | **Video ID** | `query` | – | – | – | Required |
-| **Language Code** | `language_code` | – | – | – | Required |
-| **Transcript Origin** | `transcript_origin` | – | – | – | `auto_generated` |
-| **JS Rendering** | `headless: "html"` | On | On | – | – |
+| **Language Code** | `language_code` | – | – | – | Optional |
+| **Subtitle Origin** | `subtitle_origin` | – | – | – | `auto_generated` |
+| **JS Rendering** | `headless: "html"` | On | On | Off | – |
 | **Parse** | `parse` | – | On | On | – |
+| **Markdown** | `markdown` | Off | Off | Off | – |
 | **Geolocation** | `geo` | Optional | Optional | Optional | – |
 | **Locale** | `locale` | – | Optional | – | – |
 | **Results Amount** | `limit` | – | `10` | – | – |
-| **Markdown** | `markdown` | Off | Off | – | – |
 
 Where a value is shown instead of "Optional", that is the default the node starts with.
 
-- **JS Rendering** is on by default and sends `headless: "html"`. Turning it off sends no rendering parameter at all.
-- **Markdown** only appears once **JS Rendering** is turned off, so Markdown and JavaScript rendering can't be combined in this node.
+- **JS Rendering** sends `headless: "html"` and is on by default, except on Amazon. Turning it off sends no rendering parameter at all.
+- **Markdown** can be combined with **JS Rendering**. Rendering first keeps content that pages load with JavaScript. On Google Search and Amazon it only appears once **Parse** is turned off, because Parse takes precedence.
+- **Language Code** left empty returns subtitles in every available language.
 - **Geolocation** takes a country name with a capital first letter, for example `United States`.
 - **Locale** changes the language of the search page interface, not the language of the results, for example `en-US`.
 - **Results Amount** accepts 1 to 100.

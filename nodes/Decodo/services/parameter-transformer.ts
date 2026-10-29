@@ -1,6 +1,5 @@
 import { INodeProperties, NodeParameterValueType } from 'n8n-workflow';
 import { ScraperApiParams } from '../types';
-import { Utils } from './utils';
 import {
   TargetProperty,
   UrlProperty,
@@ -12,10 +11,8 @@ import {
   LimitProperty,
   QueryProperty,
   VideoIdProperty,
-  TranscriptOriginProperty,
+  SubtitleOriginProperty,
   LanguageCodeProperty,
-  SubredditProperty,
-  RedditSortProperty,
 } from '../properties';
 
 export class PropertyHandler {
@@ -24,16 +21,16 @@ export class PropertyHandler {
     UrlProperty.property,
     QueryProperty.property,
     VideoIdProperty.property,
-    SubredditProperty.property,
     HeadlessProperty.property,
+    HeadlessProperty.offByDefaultProperty,
     ParseProperty.property,
-    TranscriptOriginProperty.property,
+    MarkdownProperty.property,
+    MarkdownProperty.withoutParseProperty,
+    SubtitleOriginProperty.property,
     LanguageCodeProperty.property,
     GeoProperty.property,
     LocaleProperty.property,
     LimitProperty.property,
-    MarkdownProperty.property,
-    RedditSortProperty.property,
   ];
 
   static getParametersWithFallback = ({
@@ -62,14 +59,13 @@ export class PropertyHandler {
     return {
       target: params.operation,
       ...(params.url && { url: params.url }),
-      ...(params.subreddit && { url: Utils.getSubredditUrl(params.subreddit, params.reddit_sort) }),
       ...(params.query && { query: params.query }),
       ...(params.video_id && { query: params.video_id }),
       ...(params.headless && { headless: 'html' }),
       ...(params.parse && { parse: params.parse }),
       ...(params.geo && { geo: params.geo }),
       ...(params.locale && { locale: params.locale }),
-      ...(params.transcript_origin && { transcript_origin: params.transcript_origin }),
+      ...(params.subtitle_origin && { subtitle_origin: params.subtitle_origin }),
       ...(params.language_code && { language_code: params.language_code }),
       ...(params.results_limit && { limit: params.results_limit }),
       ...(params.markdown && { markdown: params.markdown }),

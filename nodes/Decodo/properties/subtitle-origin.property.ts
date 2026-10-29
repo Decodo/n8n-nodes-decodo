@@ -1,12 +1,12 @@
 import { INodeProperties } from 'n8n-workflow';
 import { TARGET } from '../constants';
 
-export class TranscriptOriginProperty {
+export class SubtitleOriginProperty {
   static property = {
-    displayName: 'Transcript Origin',
-    name: 'transcript_origin',
+    displayName: 'Subtitle Origin',
+    name: 'subtitle_origin',
     description:
-      'Specifies whether to retrieve transcripts that are automatically generated or provided by the uploader',
+      'Specifies whether to retrieve subtitles that are automatically generated or provided by the uploader',
     type: 'options',
     default: 'auto_generated',
     options: [
@@ -15,7 +15,7 @@ export class TranscriptOriginProperty {
     ],
     required: false,
     displayOptions: {
-      show: { operation: [TARGET.YOUTUBE_TRANSCRIPT] },
+      show: { operation: [TARGET.YOUTUBE_SUBTITLES] },
     },
   } satisfies INodeProperties;
 }
